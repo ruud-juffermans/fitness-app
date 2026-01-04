@@ -1,0 +1,38 @@
+[
+    {
+        "id": 2324,
+        "locked": true,
+        "logged": false,
+        "notes": null,
+        "one_rm": null,
+        "performed_reps": 0,
+        "set_number": 1,
+        "target_reps": 12,
+        "user_id": 1,
+        "weight_used": null
+    },
+    {
+        "id": 2325,
+        "locked": true,
+        "logged": false,
+        "notes": null,
+        "one_rm": null,
+        "performed_reps": 0,
+        "set_number": 2,
+        "target_reps": 12,
+        "user_id": 1,
+        "weight_used": null
+    },
+    {
+        "id": 2326,
+        "locked": true,
+        "logged": false,
+        "notes": null,
+        "one_rm": null,
+        "performed_reps": 0,
+        "set_number": 3,
+        "target_reps": 12,
+        "user_id": 1,
+        "weight_used": null
+    }
+]
