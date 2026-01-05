@@ -109,12 +109,11 @@ const dark = {
             placeholderColor: palette.dark[900],
         },
         button: {
-            height: 42,
-            borderRadius: 8,
-            borderWidth: 1,
-            backgroundColor: palette.light[100],
-            borderColor: palette.light[300],
-            textColor: palette.dark[300],
+            borderRadius: 0,
+            borderWidth: 2,
+            backgroundColor: palette.dark[500],
+            borderColor: palette.dark[500],
+            textColor: palette.light[300],
         },
     },
 

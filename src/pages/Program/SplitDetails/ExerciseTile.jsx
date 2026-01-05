@@ -1,7 +1,7 @@
-import { View } from "react-native";
-import { Caption, H3, P, Small, Panel, ColorLabel } from "@components";
+import { Panel, Small, Text } from "@components";
+import { Ionicons } from "@expo/vector-icons";
 import { useTheme } from "@theme/useTheme";
-import { Text } from "../../../components";
+import { View } from "react-native";
 
 const ExerciseTile = ({ item }) => {
   const { colors } = useTheme();
@@ -11,21 +11,33 @@ const ExerciseTile = ({ item }) => {
   return (
     <Panel>
       <View>
-        <View style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between" }}>
+        <View style={{ flexDirection: "row", alignItems: "center" }}>
           <View>
-<Caption>Name</Caption>
-            <Small>{item.name}</Small>
-<Caption>Description</Caption>
-            <Small>{item.description}</Small>
+                        <Ionicons
+              name={"grid-outline"}
+              size={20}
+              color={"grey"}
+              style={{padding: 12, marginRight: 5 }}
+            />
           </View>
-          <View>
-            <View>
-              <Caption>Reps</Caption>
-              <Small>{item.reps}</Small>
+
+          <View style={{ flex: 1 }}>
+            <Text style={{ fontSize: 16, fontWeight: "600", marginBottom: 4 }}>
+                {item.name}
+            </Text>
+
+            <Text style={{ fontSize: 12, opacity: 0.8, marginBottom: 6 }}>
+                {item.description}
+            </Text>
+          </View>
+          <View style={{ gap: 4 }}>
+
+
+            <View style={{ padding: 2, width: 60, backgroundColor: "grey" }}>
+              <Small>{item.reps} Reps</Small>
             </View>
-            <View>
-              <Caption>Sets</Caption>
-              <Small>{item.sets}</Small>
+            <View style={{ padding: 2, width: 60, backgroundColor: "grey" }}>
+              <Small>{item.sets} Sets</Small>
             </View>
           </View>
         </View>

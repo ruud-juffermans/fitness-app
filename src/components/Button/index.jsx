@@ -1,14 +1,13 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useTheme } from '@theme/useTheme';
-import { ActivityIndicator, Platform, Pressable, Text } from 'react-native';
+import { ActivityIndicator, Pressable, Text } from 'react-native';
 
 const SIZES = {
-  sm: { padH: 8, font: 12, icon: 14, height: 32 },
-  md: {  padH: 8, font: 14, icon: 16, height: 32 },
-  lg: { padH: 20, font: 18, icon: 20, height: 32 },
+  sm: { padH: 5, font: 11, icon: 14, height: 26 },
+  md: {  padH: 9, font: 13, icon: 16, height: 30 },
+  lg: { padH: 12, font: 16, icon: 20, height: 36 },
 };
 
-// small helper with safe fallbacks
 const get = (obj, path, fallback) =>
   path.split('.').reduce((acc, key) => (acc && acc[key] !== undefined ? acc[key] : undefined), obj) ?? fallback;
 
@@ -17,39 +16,31 @@ function computeVariantColors(colors, variant) {
   const baseBtnText  = get(colors, 'controls.button.textColor', '#FFFFFF');
   const baseBtnBorder= get(colors, 'controls.button.borderColor', '#333333');
 
-  const accent200 = get(colors, 'accent.200', '#3ddac5');
-  const accent100 = get(colors, 'accent.100', accent200);
-  const accentTxt = get(colors, 'text', '#FFFFFF'); 
-
   switch (variant) {
     case 'primary':
       return {
-        bg: "grey",
-        text: accentTxt,
-        border: "grey",
-        ripple: 'rgba(255,255,255,0.15)',
+        bg: baseBtnBg,
+        text: baseBtnText,
+        border: baseBtnBorder,
       };
     case 'secondary':
       return {
         bg: baseBtnBg,
         text: baseBtnText,
         border: baseBtnBorder,
-        ripple: 'rgba(0,0,0,0.08)',
       };
     case 'outline':
       return {
         bg: 'transparent',
-        text: accent200,
-        border: accent200,
-        ripple: 'rgba(0,0,0,0.06)',
+        text: baseBtnText,
+        border: baseBtnBorder,
       };
     case 'ghost':
     default:
       return {
         bg: 'transparent',
-        text: accent100,
+        text: baseBtnText,
         border: 'transparent',
-        ripple: 'rgba(0,0,0,0.06)',
       };
   }
 }
@@ -73,8 +64,8 @@ export default function Button({
   const sz = SIZES[size] ?? SIZES.md;
 
   // read core chrome from theme.controls.button
-  const baseRadius   = get(colors, 'controls.button.borderRadius', 8);
-  const baseBWidth   = get(colors, 'controls.button.borderWidth', 1);
+  const baseRadius   = get(colors, 'controls.button.borderRadius', 0);
+  const baseBWidth   = get(colors, 'controls.button.borderWidth', 2);
   const baseBorder   = get(colors, 'controls.button.borderColor', '#333333');
 
   const c = computeVariantColors(colors, variant);
@@ -87,7 +78,6 @@ export default function Button({
       accessibilityRole="button"
       accessibilityState={{ disabled, busy: loading }}
       onPress={onPress}
-      android_ripple={Platform.OS === 'android' ? { color: c.ripple, borderless: false } : undefined}
       hitSlop={{ top: 6, bottom: 6, left: 6, right: 6 }}
       style={({ pressed }) => [
         {
@@ -102,11 +92,8 @@ export default function Button({
           justifyContent: 'center',
           flexDirection: 'row',
           ...(fullWidth ? { alignSelf: 'stretch' } : { alignSelf: 'baseline' }),
-          ...(variant === 'primary' || variant === 'secondary'
-            ? (Platform.OS === 'ios'
-                ? { shadowColor: '#000', shadowOpacity: 0.08, shadowRadius: 6, shadowOffset: { width: 0, height: 2 } }
-                : { elevation: 1 })
-            : null),
+          ...(variant === 'primary' || variant === 'secondary'),
+          shadowColor: '#000', shadowOpacity: 0.08, shadowRadius: 6, shadowOffset: { width: 0, height: 2 }
         },
         style,
       ]}
@@ -132,7 +119,7 @@ export default function Button({
                   color: contentColor,
                   fontSize: sz.font,
                   lineHeight: Math.round(sz.font * 1.25),
-                  fontWeight: '600',
+                  fontWeight: '300',
                 },
                 textStyle,
               ]}

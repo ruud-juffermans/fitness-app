@@ -6,8 +6,8 @@ const Panel = ({ children ,onLongPress, onPress, style }) => {
 
   const baseStyle = {
           backgroundColor: "#101214",
-          padding: 12,
-          borderRadius: 8,
+          padding: 6,
+          borderRadius: 0,
           borderWidth: 1,
           borderColor: "#333",
           gap: 4,
