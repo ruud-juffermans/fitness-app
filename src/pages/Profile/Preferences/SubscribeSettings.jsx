@@ -1,8 +1,8 @@
-import { useRef, useState } from 'react'
-import { View } from 'react-native'
 import { useTheme } from "@theme/useTheme";
+import { useRef } from 'react';
+import { View } from 'react-native';
 
-import { KeyValuePair, Text, BottomSheet, DropDownSelect } from '@components'
+import { BottomSheet, DropDownSelect, KeyValuePair, Text } from '@components';
 
 const SubscribeSettings = ({ subscribed, setSubscription }) => {
   const { colors } = useTheme();
@@ -24,11 +24,6 @@ const SubscribeSettings = ({ subscribed, setSubscription }) => {
       <BottomSheet
         ref={subscriptionSheetRef}
         modalHeight={380}
-        modalStyle={{
-          backgroundColor: colors.bottomSheet,
-          borderTopLeftRadius: 22,
-          borderTopRightRadius: 22,
-        }}
         contentContainerStyle={{ gap: 12 }}
         HeaderComponent={
           <View style={{ padding: 25, display: "flex", flexDirection: "row", justifyContent: "space-between" }}>

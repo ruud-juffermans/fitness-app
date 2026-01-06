@@ -1,10 +1,10 @@
+import { H1, Refresher } from "@components";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useNavigation } from "@react-navigation/native";
+import { useTheme } from "@theme/useTheme";
 import { useCallback, useLayoutEffect, useMemo, useState } from "react";
 import { Pressable, ScrollView, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { useTheme } from "@theme/useTheme";
-import { H1, Refresher } from "@components";
 
 /**
  * Props:
@@ -36,7 +36,8 @@ const PageWrapper = ({
   pageHeading,
   scroll = true,
 }) => {
-  const { colors } = useTheme();
+  const { colors, components } = useTheme();
+  const c = components.header
   const navigation = useNavigation();
 
   // --- pull-to-refresh (internal vs external control)
@@ -96,11 +97,11 @@ const PageWrapper = ({
       headerRight: headerRightFn,
       headerLeft: headerLeftFn,
       headerStyle: {
-        backgroundColor: colors.headerBackgroundColor,
+        backgroundColor: c.backgroundColor,
         ...(headerStyleOverride || {}),
       },
       headerTitleStyle: {
-        color: colors.contrast[100],
+        color: c.tintColor,
         ...(headerTitleStyleOverride || {}),
       },
       headerTintColor: colors.contrast[100],

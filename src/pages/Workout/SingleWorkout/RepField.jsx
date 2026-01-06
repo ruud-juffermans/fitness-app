@@ -1,5 +1,6 @@
 import { Text } from "@components";
 import Ionicons from "@expo/vector-icons/Ionicons";
+import { useTheme } from "@theme/useTheme";
 import {
     forwardRef,
     useCallback,
@@ -10,7 +11,6 @@ import {
     useState,
 } from "react";
 import { Pressable, TextInput, View } from "react-native";
-import { useTheme } from "@theme/useTheme";
 
 function clamp(n, min, max) {
     if (min !== undefined && n < min) return min;
@@ -67,7 +67,8 @@ const RepField = forwardRef(
         },
         ref
     ) => {
-        const { colors } = useTheme();
+        const { colors, components } = useTheme();
+        const c = components.logControls;
         const inputRef = useRef(null);
 
         const [text, setText] = useState(
@@ -139,7 +140,29 @@ const RepField = forwardRef(
             setNumber: (n) => commitWithClamp(n),
         }));
 
-        const placeholderColor = colors.contrast?.[300] ?? "#999";
+        const incDecStyle = {
+            height: c.height,
+            width: c.height,
+            borderRadius: c.borderRadius,
+            borderWidth: c.borderWidth,
+            backgroundColor: c.backgroundColor,
+            borderColor: c.borderColor,
+            opacity: disabled ? 0.6 : 1,
+            alignItems: "center",
+            justifyContent: "center",
+        }
+
+        const fieldStyle = {
+            height: c.height,
+            borderRadius: c.borderRadius,
+            borderWidth: c.borderWidth,
+            backgroundColor: c.backgroundColor,
+            borderColor: c.borderColor,
+            opacity: disabled ? 0.6 : 1,
+            flex: 1,
+            alignItems: "center",
+            flexDirection: "row",
+        }
 
         return (
             <View style={[{ flex: 1 }]}>
@@ -148,23 +171,10 @@ const RepField = forwardRef(
                         alignItems: "center",
                         justifyContent: "flex-end",
                         flexDirection: "row",
+                        gap: c.spacing
                     }}
                 >
-                    <View
-                        style={
-                            {
-                                flex: 1,
-                                alignItems: "center",
-                                flexDirection: "row",
-                                borderRadius: 6,
-                                borderWidth: 1,
-                                borderColor: colors.base[300],
-                                backgroundColor: colors.base[300],
-                                opacity: disabled ? 0.6 : 1,
-
-                            }}
-                    >
-
+                    <View style={fieldStyle}>
                         <TextInput
                             ref={inputRef}
                             editable={!disabled}
@@ -177,11 +187,10 @@ const RepField = forwardRef(
                                 {
                                     flex: 1,
                                     textAlign: "center",
-                                    color: colors.text,
                                     paddingVertical: 6,
-                                    minHeight: 32,
-                                    paddingHorizontal: 6,
-                                    opacity: disabled ? 0.6 : 1,
+                                    color: c.color
+
+
                                 },
                                 inputStyle,
                             ]}
@@ -192,10 +201,9 @@ const RepField = forwardRef(
                             style={[
                                 {
                                     display: "absulute",
-                                    marginLeft: -24,
-                                    marginRight: 12,
-                                    color: colors.text,
-                                    opacity: disabled ? 0.6 : 1,
+                                    flex: 1,
+                                    color: "white",
+                                    // opacity: disabled ? 0.6 : 1,
                                 },
                                 unitLabelStyle,
                             ]}
@@ -210,38 +218,18 @@ const RepField = forwardRef(
                         onPress={decrement}
                         disabled={disabled}
                         hitSlop={10}
-                        style={{
-                            padding: 2,
-                            marginLeft: 4,
-                            backgroundColor: colors.base[300],
-                            opacity: disabled ? 0.6 : 1,
-                            minHeight: 32,
-                            minWidth: 32,
-                            borderRadius: 6,
-                            alignItems: "center",
-                            justifyContent: "center",
-                        }}
+                        style={incDecStyle}
                     >
-                        <Ionicons name="remove-outline" size={20} color={colors.text} />
+                        <Ionicons name="remove-outline" size={20} color={c.color} />
                     </Pressable>
 
                     <Pressable
                         onPress={increment}
                         disabled={disabled}
                         hitSlop={10}
-                        style={{
-                            padding: 2,
-                            marginLeft: 4,
-                            backgroundColor: colors.base[300],
-                            opacity: disabled ? 0.6 : 1,
-                            minHeight: 32,
-                            minWidth: 32,
-                            borderRadius: 6,
-                            alignItems: "center",
-                            justifyContent: "center",
-                        }}
+                        style={incDecStyle}
                     >
-                        <Ionicons name="add-outline" size={20} color={colors.text} />
+                        <Ionicons name="add-outline" size={20} color={c.color} />
                     </Pressable>
                 </View>
             </View>

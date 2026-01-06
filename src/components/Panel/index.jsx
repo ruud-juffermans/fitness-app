@@ -1,19 +1,21 @@
+import { useTheme } from "@theme/useTheme";
 import { TouchableOpacity, View } from "react-native";
 
 const Panel = ({ children ,onLongPress, onPress, style }) => {
+  const { components } = useTheme();
+  const c = components.panel;
 
   const hasActions = onLongPress || onPress;
 
-  const baseStyle = {
-          backgroundColor: "#101214",
-          padding: 6,
-          borderRadius: 0,
-          borderWidth: 1,
-          borderColor: "#333",
-          gap: 4,
-        }
+  // const baseStyle = {
+  //         backgroundColor: c.backgroundColor,
+  //         padding: c.padding,
+  //         borderRadius: c.borderRadius,
+  //         borderWidth: c.borderWidth,
+  //         borderColor: c.borderColor,
+  //       }
 
-  const combinedStyle = [baseStyle, style];
+  const combinedStyle = [c, style];
 
   if (!hasActions) {
     return (

@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
   h6: { fontSize: 16, lineHeight: 22, fontWeight: '600' },
   p:  { fontSize: 14, lineHeight: 20, fontWeight: '300' },
   small:   { fontSize: 12, lineHeight: 18, fontWeight: '300' },
-  caption: { fontSize: 10, textTransform: "uppercase", paddingBottom: 0, fontWeight: '500', opacity: 0.5 },
+  caption: { fontSize: 12, textTransform: "uppercase", paddingBottom: 0, fontWeight: 500, opacity: 0.4 },
 });
 
 const ramp = (obj, key, def) => obj?.[key] ?? def;

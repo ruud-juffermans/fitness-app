@@ -18,7 +18,6 @@ const BottomSheet = forwardRef(
       HeaderComponent,
       FooterComponent,
       contentContainerStyle,
-      modalStyle,
       withReactModal = false,
       withHandle = true,
       handlePosition = "inside",
@@ -66,7 +65,11 @@ const BottomSheet = forwardRef(
             onClosed={onClosed}
             onOpened={onOpened}
             onOverlayPress={closeOnBackdrop ? () => sheetRef.current?.close() : undefined}
-            modalStyle={modalStyle}
+            modalStyle={{
+              backgroundColor: colors.bottomSheet,
+              borderTopLeftRadius: 22,
+              borderTopRightRadius: 22,
+            }}
             flatListProps={flatListProps}
             {...modalizeProps}
           >

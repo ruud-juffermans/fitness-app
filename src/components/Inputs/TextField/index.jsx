@@ -12,7 +12,7 @@ export default function InputField({
   editable = true,
 }) {
   const { colors } = useTheme();
-  const c = colors.controls.input;
+  const c = colors.components.input;
 
   return (
     <TextInput

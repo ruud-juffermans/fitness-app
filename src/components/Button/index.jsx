@@ -1,6 +1,7 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useTheme } from '@theme/useTheme';
 import { ActivityIndicator, Pressable, Text } from 'react-native';
+import { getFromTheme } from '../../utils/getFromTheme';
 
 const SIZES = {
   sm: { padH: 5, font: 11, icon: 14, height: 26 },
@@ -8,13 +9,10 @@ const SIZES = {
   lg: { padH: 12, font: 16, icon: 20, height: 36 },
 };
 
-const get = (obj, path, fallback) =>
-  path.split('.').reduce((acc, key) => (acc && acc[key] !== undefined ? acc[key] : undefined), obj) ?? fallback;
-
 function computeVariantColors(colors, variant) {
-  const baseBtnBg    = get(colors, 'controls.button.backgroundColor', '#1E1E1E');
-  const baseBtnText  = get(colors, 'controls.button.textColor', '#FFFFFF');
-  const baseBtnBorder= get(colors, 'controls.button.borderColor', '#333333');
+  const baseBtnBg    = getFromTheme(colors, 'components.button.backgroundColor', '#1E1E1E');
+  const baseBtnText  = getFromTheme(colors, 'components.button.textColor', '#FFFFFF');
+  const baseBtnBorder= getFromTheme(colors, 'components.button.borderColor', '#333333');
 
   switch (variant) {
     case 'primary':
@@ -63,10 +61,9 @@ export default function Button({
   const { colors, theme } = useTheme();
   const sz = SIZES[size] ?? SIZES.md;
 
-  // read core chrome from theme.controls.button
-  const baseRadius   = get(colors, 'controls.button.borderRadius', 0);
-  const baseBWidth   = get(colors, 'controls.button.borderWidth', 2);
-  const baseBorder   = get(colors, 'controls.button.borderColor', '#333333');
+  const baseRadius   = getFromTheme(colors, 'components.button.borderRadius', 0);
+  const baseBWidth   = getFromTheme(colors, 'components.button.borderWidth', 2);
+  const baseBorder   = getFromTheme(colors, 'components.button.borderColor', '#333333');
 
   const c = computeVariantColors(colors, variant);
   const contentColor = c.text;

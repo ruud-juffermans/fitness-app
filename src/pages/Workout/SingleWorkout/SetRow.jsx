@@ -1,16 +1,19 @@
+import { useTheme } from "@theme/useTheme";
 import { useCallback } from "react";
 import { View } from "react-native";
-import WeightField from "./WeightField";
 import RepField from "./RepField";
+import WeightField from "./WeightField";
 
 const SetRow = ({ row, onChange }) => {
+    const { components } = useTheme();
 
+    const c = components.logControls
   const isLocked = row?.locked
   const onKgChange = useCallback((i) => onChange({id: row.id, "weight_used":i}));
   const onRepsChange = useCallback((i) => onChange({id: row.id, "reps":i}));
   
   return (
-    <View style={{ flexDirection: "row", alignItems: "center", gap: 4 }}>
+    <View style={{ flexDirection: "row", alignItems: "center", gap: c.spacing }}>
 
       <WeightField
         defaultValue={row.weight_used != null ? parseFloat(row.weight_used) : undefined}

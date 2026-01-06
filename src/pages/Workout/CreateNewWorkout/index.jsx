@@ -1,8 +1,8 @@
-import { DataWrapper, PageWrapper, Button } from "@components";
-import { View } from "react-native";
+import { Button, DataWrapper, PageWrapper } from "@components";
 import { usePrograms } from "@hooks/usePrograms";
 import { useWorkouts } from "@hooks/useWorkouts";
 import { useEffect, useState } from "react";
+import { View } from "react-native";
 import SelectProgram from "./SelectProgram";
 import SelectSplit from "./SelectSplit";
 

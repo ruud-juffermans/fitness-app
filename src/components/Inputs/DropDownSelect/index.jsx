@@ -1,5 +1,5 @@
 import { useTheme } from "@theme/useTheme";
-import { useEffect, useMemo, useState, useCallback } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { Platform, View } from "react-native";
 import DropDownPicker from "react-native-dropdown-picker";
 
@@ -20,8 +20,8 @@ export default function DropDownSelect({
   zIndex = 1000,
   disabled = false,
 }) {
-  const { colors } = useTheme();
-  const c = colors.controls.input;
+  const { components } = useTheme();
+  const c = components.input;
 
   // --- open state (controlled or internal) ---
   const [openInternal, setOpenInternal] = useState(false);
@@ -65,7 +65,6 @@ export default function DropDownSelect({
       style={[
         {
           zIndex: dynamicZIndex,
-          elevation: Platform.OS === "android" ? dynamicZIndex : 0,
         },
         containerStyle,
       ]}

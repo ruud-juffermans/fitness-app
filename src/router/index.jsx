@@ -35,25 +35,33 @@ export default function Router() {
   );
 }
 
+
+
 function Tabs() {
-  const { colors, theme } = useTheme();
+  const { colors, components, theme } = useTheme();
+  const c = components.tabBar;
+
+  const tabBarStyle = {
+    tabBarLabel: "",
+    tabBarStyle: {
+      borderColor: c.borderColor,
+      backgroundColor: c.backgroundColor,
+    }
+  }
+
   return (
     <Tab.Navigator
       initialRouteName="HomeTab"
       screenOptions={{
         headerShown: false,
-        tabBarActiveTintColor: colors.contrast[100],
-        tabBarInactiveTintColor: colors.contrast[900],
+        tabBarActiveTintColor: c.tintActive,
+        tabBarInactiveTintColor: c.tintInactive,
       }}
     >
       <Tab.Screen
         name="HomeTab"
         options={{
-          tabBarLabel: "",
-          tabBarStyle: {
-            borderColor: colors.tabBarBackgroundColor,
-            backgroundColor: colors.tabBarBackgroundColor,
-          },
+          ...tabBarStyle,
           tabBarIcon: ({ color }) => (
             <TabBarIcon name="home-outline" color={color} />
           ),
@@ -69,11 +77,7 @@ function Tabs() {
       <Tab.Screen
         name="WorkoutTab"
         options={{
-          tabBarLabel: "",
-          tabBarStyle: {
-            borderColor: colors.tabBarBackgroundColor,
-            backgroundColor: colors.tabBarBackgroundColor,
-          },
+          ...tabBarStyle,
           tabBarIcon: ({ color }) => (
             <TabBarIcon name="triangle-outline" color={color} />
           ),
@@ -89,11 +93,7 @@ function Tabs() {
       <Tab.Screen
         name="ProgramsTab"
         options={{
-          tabBarLabel: "",
-          tabBarStyle: {
-            borderColor: colors.tabBarBackgroundColor,
-            backgroundColor: colors.tabBarBackgroundColor,
-          },
+          ...tabBarStyle,
           tabBarIcon: ({ color }) => (
             <TabBarIcon name="book-outline" color={color} />
           ),
@@ -109,11 +109,7 @@ function Tabs() {
       <Tab.Screen
         name="ProfileTab"
         options={{
-          tabBarLabel: "",
-          tabBarStyle: {
-            borderColor: theme == "dark" ? colors.tabBarBackgroundColor : colors.contrast[900],
-            backgroundColor: colors.tabBarBackgroundColor,
-          },
+          ...tabBarStyle,
           tabBarIcon: ({ color }) => (
             <TabBarIcon name="person-outline" color={color} />
           ),
@@ -137,13 +133,13 @@ function StackWrapper({ colors, initial }) {
 
       <Stack.Screen name="ProgramDetails" component={ProgramDetails} options={{ title: "ProgramDetails" }} />
       <Stack.Screen name="SplitDetails" component={SplitDetails} options={{ title: "ProgramDetails" }} />
-      
+
       <Stack.Screen name="Create New Program" component={CreateNewProgram} options={{ title: "Create New Program" }} />
 
       <Stack.Screen name="Exercises" component={Exercises} options={{ title: "Exercises" }} />
       <Stack.Screen name="SingleExercise" component={SingleExercise} options={{ title: "SingleExercise" }} />
       <Stack.Screen name="Create New Exercise" component={CreateNewExercise} options={{ title: "Create New Exercise" }} />
-      
+
       <Stack.Screen name="SingleWorkout" component={SingleWorkout} options={{ title: "SingleWorkout" }} />
       <Stack.Screen name="Create New Workout" component={CreateNewWorkout} options={{ title: "Create New Workout" }} />
 
@@ -159,7 +155,7 @@ function TabBarIcon({ name, color }) {
       name={name}
       size={24}
       color={color}
-      style={{ marginBottom: -20 }}
+      style={{ marginBottom: -10 }}
     />
   );
 }
